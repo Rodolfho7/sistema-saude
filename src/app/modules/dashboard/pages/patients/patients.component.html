@@ -1,0 +1,155 @@
+<div class="container mx-auto mt-4 p-2">
+  <div class="flex justify-between pb-2">
+    <h2 class="text-2xl font-bold">Pacientes</h2>
+    <button class="btn btn-ghost" (click)="modal_cadastrar_cliente.showModal()">
+      Cadastrar Paciente
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4.5v15m7.5-7.5h-15"
+        />
+      </svg>
+    </button>
+    <dialog id="modal_cadastrar_cliente" #modal_cadastrar_cliente class="modal">
+      <div class="modal-box">
+        <form [formGroup]="formNovopaciente" class="flex gap-4 flex-col">
+          <label class="fieldset-label justify-end"
+            ><span>Nome</span>
+
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovopaciente.get('nome')?.invalid &&
+                  formNovopaciente.get('nome')?.touched
+              }"
+              placeholder="Nome"
+              formControlName="nome"
+            />
+          </label>
+
+          <label class="fieldset-label justify-end">
+            País
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovopaciente.get('pais')?.invalid &&
+                  formNovopaciente.get('pais')?.touched
+              }"
+              placeholder="País"
+              formControlName="pais"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Profissão
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovopaciente.get('profissao')?.invalid &&
+                  formNovopaciente.get('profissao')?.touched
+              }"
+              placeholder="Profissão"
+              formControlName="profissao"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Plano de saúde
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovopaciente.get('planoSaude')?.invalid &&
+                  formNovopaciente.get('planoSaude')?.touched
+              }"
+              placeholder="plano de saúde"
+              formControlName="planoSaude"
+            />
+          </label>
+        </form>
+        <div class="modal-action">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            (click)="modal_cadastrar_cliente.close()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-neutral"
+            [disabled]="formNovopaciente.invalid"
+            (click)="cadastrar(); modal_cadastrar_cliente.close()"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+  <div
+    class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-8"
+  >
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>Profissão</th>
+          <th>Plano de saúde</th>
+          <!-- <th class="w-20">detalhes</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let patient of patients">
+          <tr
+            class="hover:bg-gray-100 cursor-pointer"
+            (click)="goToPatientDetails(patient)"
+          >
+            <th>{{ patient.id }}</th>
+            <td>
+              <div class="flex items-center gap-3">
+                <div class="p-1 rounded-full shadow-md bg-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-bold">{{ patient.nome }}</div>
+                  <div class="text-sm opacity-50">{{ patient.pais }}</div>
+                </div>
+              </div>
+            </td>
+            <td>{{ patient.profissao }}</td>
+            <td>{{ patient.planoSaude }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
