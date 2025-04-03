@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CheckComponent } from '../../../../components/icons/check/check.component';
+import { CheckComponent } from '../../../../components/icones/check/check.component';
 import { NgClass, NgFor } from '@angular/common';
 
 @Component({

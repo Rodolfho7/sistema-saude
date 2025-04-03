@@ -102,13 +102,13 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let patient of patients">
+        <ng-container *ngFor="let paciente of pacientes">
           <tr
             class="hover:bg-gray-50 cursor-pointer"
-            (click)="goToPatientDetails(patient)"
+            (click)="irParaDetalhes(paciente)"
           >
             <th class="border-r border-r-gray-100 text-center">
-              {{ patient.id }}
+              {{ paciente.id }}
             </th>
             <td>
               <div class="flex items-center gap-3">
@@ -116,13 +116,13 @@
                   <app-icon-person></app-icon-person>
                 </div>
                 <div>
-                  <div class="font-bold">{{ patient.nome }}</div>
-                  <div class="text-sm opacity-50">{{ patient.pais }}</div>
+                  <div class="font-bold">{{ paciente.nome }}</div>
+                  <div class="text-sm opacity-50">{{ paciente.pais }}</div>
                 </div>
               </div>
             </td>
-            <td>{{ patient.profissao }}</td>
-            <td>{{ patient.planoSaude }}</td>
+            <td>{{ paciente.profissao }}</td>
+            <td>{{ paciente.planoSaude }}</td>
           </tr>
         </ng-container>
       </tbody>

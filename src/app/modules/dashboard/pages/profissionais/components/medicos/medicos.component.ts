@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass, NgFor } from '@angular/common';
-import { PlusComponent } from '../../../../components/icons/plus/plus.component';
+import { PlusComponent } from '../../../../components/icones/plus/plus.component';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PersonComponent } from '../../../../components/icons/person/person.component';
+import { PersonComponent } from '../../../../components/icones/person/person.component';
 
 @Component({
   selector: 'app-medicos',

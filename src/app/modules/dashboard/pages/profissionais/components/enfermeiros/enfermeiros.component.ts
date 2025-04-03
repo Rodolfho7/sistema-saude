@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonComponent } from '../../../../components/icons/person/person.component';
+import { PersonComponent } from '../../../../components/icones/person/person.component';
 import { NgClass, NgFor } from '@angular/common';
 import {
   FormBuilder,
@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PlusComponent } from '../../../../components/icons/plus/plus.component';
+import { PlusComponent } from '../../../../components/icones/plus/plus.component';
 
 @Component({
   selector: 'app-enfermeiros',

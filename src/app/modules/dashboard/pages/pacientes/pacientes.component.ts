@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PatientService } from '../../services/patient.service';
+import { PacienteService } from '../../services/paciente.service';
 import { NgClass, NgFor } from '@angular/common';
 import {
   FormBuilder,
@@ -8,11 +8,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PlusComponent } from '../../components/icons/plus/plus.component';
-import { PersonComponent } from '../../components/icons/person/person.component';
+import { PlusComponent } from '../../components/icones/plus/plus.component';
+import { PersonComponent } from '../../components/icones/person/person.component';
 
 @Component({
-  selector: 'app-patients',
+  selector: 'app-pacientes',
   imports: [
     NgFor,
     NgClass,
@@ -20,11 +20,11 @@ import { PersonComponent } from '../../components/icons/person/person.component'
     PlusComponent,
     PersonComponent,
   ],
-  templateUrl: './patients.component.html',
-  styleUrl: './patients.component.css',
+  templateUrl: './pacientes.component.html',
+  styleUrl: './pacientes.component.css',
 })
-export class PatientsComponent implements OnInit {
-  patients = [
+export class PacientesComponent implements OnInit {
+  pacientes = [
     {
       id: 0,
       nome: 'Hart Hagerty',
@@ -52,7 +52,7 @@ export class PatientsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private patientService: PatientService,
+    private pacienteService: PacienteService,
     private fb: FormBuilder
   ) {}
 
@@ -66,11 +66,11 @@ export class PatientsComponent implements OnInit {
   }
 
   cadastrar() {
-    const patient = this.formNovopaciente.value;
-    this.patients.push({ ...patient, id: this.patients.length });
+    const paciente = this.formNovopaciente.value;
+    this.pacientes.push({ ...paciente, id: this.pacientes.length });
   }
 
-  goToPatientDetails(element: any) {
-    this.router.navigate([`/dashboard/patients/${element.id}`]);
+  irParaDetalhes(element: any) {
+    this.router.navigate([`/dashboard/pacientes/${element.id}`]);
   }
 }

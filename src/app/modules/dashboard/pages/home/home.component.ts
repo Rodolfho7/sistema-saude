@@ -17,11 +17,11 @@ export class HomeComponent {
     },
     {
       label: 'Pacientes',
-      url: '/dashboard/patients',
+      url: '/dashboard/pacientes',
     },
     {
       label: 'Profissionais',
-      url: '/dashboard/professionals',
+      url: '/dashboard/profissionais',
     },
   ];
 }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { MenuComponent } from './components/icons/menu/menu.component';
-import { PersonComponent } from './components/icons/person/person.component';
-import { LeaveComponent } from './components/icons/leave/leave.component';
-import { HomeComponent } from './components/icons/home/home.component';
+import { MenuComponent } from './components/icones/menu/menu.component';
+import { PersonComponent } from './components/icones/person/person.component';
+import { LeaveComponent } from './components/icones/leave/leave.component';
+import { HomeComponent } from './components/icones/home/home.component';
 
 @Component({
   selector: 'app-dashboard',

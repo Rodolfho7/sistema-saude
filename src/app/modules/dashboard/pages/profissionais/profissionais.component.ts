@@ -4,9 +4,9 @@ import { EnfermeirosComponent } from './components/enfermeiros/enfermeiros.compo
 import { TecnicosComponent } from './components/tecnicos/tecnicos.component';
 
 @Component({
-  selector: 'app-professionals',
+  selector: 'app-profissionais',
   imports: [MedicosComponent, EnfermeirosComponent, TecnicosComponent],
-  templateUrl: './professionals.component.html',
-  styleUrl: './professionals.component.scss',
+  templateUrl: './profissionais.component.html',
+  styleUrl: './profissionais.component.scss',
 })
-export class ProfessionalsComponent {}
+export class ProfissionaisComponent {}

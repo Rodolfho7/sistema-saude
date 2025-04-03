@@ -22,13 +22,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-administrators',
+  selector: 'app-administradores',
   imports: [],
-  templateUrl: './administrators.component.html',
-  styleUrl: './administrators.component.css',
+  templateUrl: './administradores.component.html',
+  styleUrl: './administradores.component.css',
   standalone: true,
 })
-export class AdministratorsComponent {
+export class AdministradoresComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 

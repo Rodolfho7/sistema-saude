@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { AdministratorsComponent } from './pages/administrators/administrators.component';
-import { PatientsComponent } from './pages/patients/patients.component';
+import { AdministradoresComponent } from './pages/administradores/administradores.component';
+import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './dashboard.component';
-import { PatientsDetailsComponent } from './pages/patients-details/patients-details.component';
-import { ProfessionalsComponent } from './pages/professionals/professionals.component';
+import { PacienteDetalhesComponent } from './pages/paciente-detalhes/paciente-detalhes.component';
+import { ProfissionaisComponent } from './pages/profissionais/profissionais.component';
 
 export const dashboardRoutes: Routes = [
   {
@@ -17,23 +17,23 @@ export const dashboardRoutes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'administrators',
-        component: AdministratorsComponent,
+        path: 'administradores',
+        component: AdministradoresComponent,
         pathMatch: 'full',
       },
       {
-        path: 'professionals',
-        component: ProfessionalsComponent,
+        path: 'profissionais',
+        component: ProfissionaisComponent,
         pathMatch: 'full',
       },
       {
-        path: 'patients',
-        component: PatientsComponent,
+        path: 'pacientes',
+        component: PacientesComponent,
         pathMatch: 'full',
       },
       {
-        path: 'patients/:id',
-        component: PatientsDetailsComponent,
+        path: 'pacientes/:id',
+        component: PacienteDetalhesComponent,
         pathMatch: 'full',
       },
     ],

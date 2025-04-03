@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PlusComponent } from '../../../../components/icons/plus/plus.component';
+import { PlusComponent } from '../../../../components/icones/plus/plus.component';
 
 @Component({
   selector: 'app-consultas',
