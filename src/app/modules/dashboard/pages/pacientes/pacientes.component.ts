@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { PlusComponent } from '../../components/icones/plus/plus.component';
 import { PersonComponent } from '../../components/icones/person/person.component';
+import { RemoveComponent } from '../../components/icones/remove/remove.component';
+import { OptionsComponent } from '../../components/icones/options/options.component';
+import { DetailsComponent } from '../../components/icones/details/details.component';
 
 @Component({
   selector: 'app-pacientes',
@@ -19,6 +22,9 @@ import { PersonComponent } from '../../components/icones/person/person.component
     ReactiveFormsModule,
     PlusComponent,
     PersonComponent,
+    RemoveComponent,
+    OptionsComponent,
+    DetailsComponent,
   ],
   templateUrl: './pacientes.component.html',
   styleUrl: './pacientes.component.css',
@@ -53,4 +59,6 @@ export class PacientesComponent implements OnInit {
   irParaDetalhes(element: any) {
     this.router.navigate([`/dashboard/pacientes/${element.id}`]);
   }
+
+  removerPaciente() {}
 }

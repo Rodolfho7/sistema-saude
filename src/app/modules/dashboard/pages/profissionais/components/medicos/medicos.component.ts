@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PersonComponent } from '../../../../components/icones/person/person.component';
+import { MedicosService } from '../../../../services/medicos.service';
 
 @Component({
   selector: 'app-medicos',
@@ -24,24 +25,16 @@ import { PersonComponent } from '../../../../components/icones/person/person.com
 export class MedicosComponent implements OnInit {
   formNovoProfissional!: FormGroup;
 
-  professionals = [
-    {
-      id: 0,
-      nome: 'Dr. Rafael Pereira',
-      especialidade: 'Ortopedista',
-      crm: 123123123,
-    },
-    {
-      id: 1,
-      nome: 'Dra. Larissa Colosso',
-      especialidade: 'Geriatra',
-      crm: 456456456,
-    },
-  ];
+  medicos: any[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private medicosService: MedicosService
+  ) {}
 
   ngOnInit(): void {
+    this.medicos = this.medicosService.medicos;
+
     this.formNovoProfissional = this.fb.group({
       nome: [null, Validators.required],
       especialidade: [null, Validators.required],
@@ -51,6 +44,6 @@ export class MedicosComponent implements OnInit {
 
   cadastrar() {
     const novoMedico = this.formNovoProfissional.value;
-    this.professionals.push({ ...novoMedico, id: this.professionals.length });
+    this.medicosService.addMedico(novoMedico);
   }
 }

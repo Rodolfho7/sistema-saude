@@ -93,21 +93,21 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let professional of professionals">
+      <ng-container *ngFor="let medico of medicos">
         <tr class="hover:bg-gray-50">
           <th class="border-r border-r-gray-100 text-center">
-            {{ professional?.id }}
+            {{ medico?.id }}
           </th>
           <td>
             <div class="flex items-center gap-3">
               <div class="rounded-full bg-gray-700 text-white p-2">
                 <app-icon-person></app-icon-person>
               </div>
-              <div>{{ professional?.nome }}</div>
+              <div>{{ medico?.nome }}</div>
             </div>
           </td>
-          <td>{{ professional?.especialidade }}</td>
-          <td>{{ professional?.crm }}</td>
+          <td>{{ medico?.especialidade }}</td>
+          <td>{{ medico?.crm }}</td>
         </tr>
       </ng-container>
     </tbody>

@@ -87,9 +87,7 @@
       </div>
     </dialog>
   </div>
-  <div
-    class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mb-8"
-  >
+  <div class="rounded-box border border-base-content/5 bg-base-100 mb-8">
     <table class="table">
       <!-- head -->
       <thead class="bg-gray-100">
@@ -98,15 +96,13 @@
           <th>Nome</th>
           <th>Profissão</th>
           <th>Plano de saúde</th>
+          <th></th>
           <!-- <th class="w-20">detalhes</th> -->
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let paciente of pacientes">
-          <tr
-            class="hover:bg-gray-50 cursor-pointer"
-            (click)="irParaDetalhes(paciente)"
-          >
+          <tr class="hover:bg-gray-50">
             <th class="border-r border-r-gray-100 text-center">
               {{ paciente.id }}
             </th>
@@ -123,6 +119,34 @@
             </td>
             <td>{{ paciente.profissao }}</td>
             <td>{{ paciente.planoSaude }}</td>
+            <td>
+              <div class="dropdown">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-circle m-1 bg-white"
+                >
+                  <app-icon-options></app-icon-options>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="dropdown-content menu bg-base-100 rounded-box w-min p-2 shadow-sm z-50"
+                >
+                  <li (click)="removerPaciente()">
+                    <a class="text-red-400">
+                      <app-icon-remove></app-icon-remove>
+                      Remover
+                    </a>
+                  </li>
+                  <li (click)="irParaDetalhes(paciente)">
+                    <a>
+                      <app-icon-details></app-icon-details>
+                      <span class="text-nowrap"> Ver detalhes </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
           </tr>
         </ng-container>
       </tbody>
