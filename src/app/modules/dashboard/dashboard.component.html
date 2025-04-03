@@ -58,6 +58,17 @@
           </a>
         </li>
         <li
+          (click)="navegarPara('/dashboard/administradores', overlay)"
+          class="flex gap-1 flex-row items-center"
+          routerLink="/dashboard/administradores"
+          routerLinkActive="active"
+        >
+          <a class="w-full">
+            <app-icon-person></app-icon-person>
+            Administradores
+          </a>
+        </li>
+        <li
           (click)="navegarPara('/dashboard/profissionais', overlay)"
           class="flex gap-1 flex-row items-center"
           routerLink="/dashboard/profissionais"

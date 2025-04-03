@@ -13,7 +13,7 @@ export class HomeComponent {
   options = [
     {
       label: 'Administradores',
-      url: '/dashboard/administrators',
+      url: '/dashboard/administradores',
     },
     {
       label: 'Pacientes',
