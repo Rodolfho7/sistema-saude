@@ -53,12 +53,12 @@ const ELEMENT_DATA: any[] = [
 ];
 
 @Component({
-  selector: 'app-exams',
+  selector: 'app-exames',
   imports: [],
-  templateUrl: './exams.component.html',
-  styleUrl: './exams.component.css',
+  templateUrl: './exames.component.html',
+  styleUrl: './exames.component.css',
 })
-export class ExamsComponent {
+export class ExamesComponent {
   displayedColumns: string[] = ['titulo', 'medico', 'data', 'status'];
   displayedColumnsWithExpand = [...this.displayedColumns, 'detalhes'];
   dataSource = ELEMENT_DATA;

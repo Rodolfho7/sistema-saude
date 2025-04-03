@@ -8,10 +8,18 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { PlusComponent } from '../../components/icons/plus/plus.component';
+import { PersonComponent } from '../../components/icons/person/person.component';
 
 @Component({
   selector: 'app-patients',
-  imports: [NgFor, NgClass, ReactiveFormsModule],
+  imports: [
+    NgFor,
+    NgClass,
+    ReactiveFormsModule,
+    PlusComponent,
+    PersonComponent,
+  ],
   templateUrl: './patients.component.html',
   styleUrl: './patients.component.css',
 })

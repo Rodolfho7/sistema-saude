@@ -1,0 +1,102 @@
+<div class="flex justify-between items-center pb-2">
+  <h2>Dados das consultas</h2>
+
+  <div>
+    <button class="btn btn-ghost" (click)="modal_cadastrar_cliente.showModal()">
+      Marcar consulta
+      <app-icon-plus></app-icon-plus>
+    </button>
+    <dialog id="modal_cadastrar_cliente" #modal_cadastrar_cliente class="modal">
+      <div class="modal-box">
+        <form [formGroup]="formNovaConsulta" class="flex gap-4 flex-col">
+          <label class="fieldset-label justify-end"
+            ><span>Nome do Médico</span>
+
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovaConsulta.get('nomeMedico')?.invalid &&
+                  formNovaConsulta.get('nomeMedico')?.touched
+              }"
+              placeholder="Nome do médico"
+              formControlName="nomeMedico"
+            />
+          </label>
+
+          <label class="fieldset-label justify-end">
+            Data
+            <input
+              type="date"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovaConsulta.get('data')?.invalid &&
+                  formNovaConsulta.get('data')?.touched
+              }"
+              formControlName="data"
+            />
+          </label>
+        </form>
+        <div class="modal-action">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            (click)="modal_cadastrar_cliente.close()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-neutral"
+            [disabled]="formNovaConsulta.invalid"
+            (click)="addConsulta(); modal_cadastrar_cliente.close()"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</div>
+
+<div
+  class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+>
+  <table class="table">
+    <!-- head -->
+    <thead class="bg-gray-100">
+      <tr>
+        <th></th>
+        <th>Dr.</th>
+        <th>Data</th>
+        <th>Status</th>
+        <!-- <th class="w-20">detalhes</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let consulta of consultas">
+        <tr class="hover:bg-gray-50">
+          <th>{{ consulta?.id }}</th>
+          <td>
+            <div class="font-bold">{{ consulta?.nomeMedico }}</div>
+          </td>
+          <td>{{ consulta?.data | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <div
+              class="badge text-white"
+              [ngClass]="{
+                'badge-success': consulta?.status == 'Consultado',
+                'badge-warning': consulta?.status == 'A consultar',
+                'badge-error': consulta?.status == 'Cancelado'
+              }"
+            >
+              {{ consulta?.status }}
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

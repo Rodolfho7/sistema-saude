@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { MenuComponent } from './components/icons/menu/menu.component';
+import { PersonComponent } from './components/icons/person/person.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, MenuComponent, PersonComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   standalone: true,
@@ -15,7 +17,7 @@ export class DashboardComponent {
     this.router.navigate([url]);
   }
 
-  exit() {
+  sair() {
     localStorage.removeItem('user-token');
     this.router.navigate(['/login']);
   }

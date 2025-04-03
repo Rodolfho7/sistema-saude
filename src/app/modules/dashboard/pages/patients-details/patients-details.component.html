@@ -1,24 +1,28 @@
 <div class="container mx-auto p-4">
+  <button class="btn btn-ghost mb-4" (click)="voltar()">
+    <app-icon-left></app-icon-left>
+    Voltar
+  </button>
   <div class="tabs tabs-lift">
-    <input type="radio" name="my_tabs_3" class="tab" aria-label="Informações" />
-    <div class="tab-content bg-base-100 border-base-300 p-6">
-      <app-info></app-info>
-    </div>
-
     <input
       type="radio"
       name="my_tabs_3"
       class="tab"
-      aria-label="Consultas"
+      aria-label="Informações"
       checked="checked"
     />
     <div class="tab-content bg-base-100 border-base-300 p-6">
-      <app-consultation></app-consultation>
+      <app-info></app-info>
+    </div>
+
+    <input type="radio" name="my_tabs_3" class="tab" aria-label="Consultas" />
+    <div class="tab-content bg-base-100 border-base-300 p-6">
+      <app-consultas></app-consultas>
     </div>
 
     <input type="radio" name="my_tabs_3" class="tab" aria-label="Exames" />
     <div class="tab-content bg-base-100 border-base-300 p-6">
-      <app-exams></app-exams>
+      <app-exames></app-exames>
     </div>
   </div>
 </div>

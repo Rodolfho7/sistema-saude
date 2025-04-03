@@ -1,10 +1,11 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { BannerComponent } from './components/banner/banner.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor, RouterLink],
+  imports: [NgFor, RouterLink, BannerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

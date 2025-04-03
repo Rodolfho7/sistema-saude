@@ -3,20 +3,7 @@
     <h2 class="text-2xl font-bold">Pacientes</h2>
     <button class="btn btn-ghost" (click)="modal_cadastrar_cliente.showModal()">
       Cadastrar Paciente
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="size-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 4.5v15m7.5-7.5h-15"
-        />
-      </svg>
+      <app-icon-plus></app-icon-plus>
     </button>
     <dialog id="modal_cadastrar_cliente" #modal_cadastrar_cliente class="modal">
       <div class="modal-box">
@@ -105,7 +92,7 @@
   >
     <table class="table">
       <!-- head -->
-      <thead>
+      <thead class="bg-gray-100">
         <tr>
           <th></th>
           <th>Nome</th>
@@ -117,27 +104,14 @@
       <tbody>
         <ng-container *ngFor="let patient of patients">
           <tr
-            class="hover:bg-gray-100 cursor-pointer"
+            class="hover:bg-gray-50 cursor-pointer"
             (click)="goToPatientDetails(patient)"
           >
             <th>{{ patient.id }}</th>
             <td>
               <div class="flex items-center gap-3">
-                <div class="p-1 rounded-full shadow-md bg-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                    />
-                  </svg>
+                <div class="rounded-full bg-white shadow-md p-2">
+                  <app-icon-person></app-icon-person>
                 </div>
                 <div>
                   <div class="font-bold">{{ patient.nome }}</div>

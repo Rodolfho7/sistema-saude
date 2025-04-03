@@ -11,10 +11,7 @@ type Patient = {
   providedIn: 'root',
 })
 export class PatientService {
-  patients: Patient[] = [
-    { id: 0, nome: 'Rodolfho Azevedo', peso: 80, altura: 1.76 },
-    { id: 1, nome: 'Thamara Leal', peso: 80, altura: 1.59 },
-  ];
+  patients: Patient[] = [];
 
   constructor() {}
 
