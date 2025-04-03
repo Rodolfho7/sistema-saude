@@ -1,19 +1,19 @@
-<div class="drawer">
+<div class="drawer lg:drawer-open">
   <input id="my-drawer" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content">
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-base-200">
       <div class="flex-1 flex gap-2 items-center">
-        <label class="btn btn-ghost text-xl" for="my-drawer">
+        <label class="btn btn-ghost text-xl lg:hidden" for="my-drawer">
           <app-icon-menu></app-icon-menu>
         </label>
-        <p class="flex gap-1 items-center">
+        <p class="flex gap-1 items-center lg:hidden">
           <img src="assets/vida-plus.svg" class="size-5" />
           VidaPlus
         </p>
       </div>
       <div class="flex-none">
         <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-circle m-1">
+          <div tabindex="0" role="button" class="btn btn-circle m-1 bg-white">
             <app-icon-person></app-icon-person>
           </div>
           <ul
@@ -39,16 +39,18 @@
       class="drawer-overlay"
       #overlay
     ></label>
-    <div class="min-h-full w-80 bg-base-200 p-4">
-      <p class="flex gap-1 items-center justify-center">
+    <div class="min-h-full w-60 bg-base-200 p-4">
+      <p class="flex gap-1 items-center justify-center h-12">
         <img src="assets/vida-plus.svg" class="size-5" />
         VidaPlus
       </p>
-      <div class="divider"></div>
-      <ul class="menu text-base-content h-full w-full gap-3">
+      <ul class="menu text-base-content h-full w-full gap-3 p-0">
         <li
-          (click)="navigateTo('dashboard'); overlay.click()"
+          (click)="navegarPara('/dashboard', overlay)"
           class="flex gap-1 flex-row items-center"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <a class="w-full">
             <app-icon-home></app-icon-home>
@@ -56,8 +58,21 @@
           </a>
         </li>
         <li
-          (click)="navigateTo('dashboard/pacientes'); overlay.click()"
+          (click)="navegarPara('/dashboard/profissionais', overlay)"
           class="flex gap-1 flex-row items-center"
+          routerLink="/dashboard/profissionais"
+          routerLinkActive="active"
+        >
+          <a class="w-full">
+            <app-icon-person></app-icon-person>
+            Profissionais
+          </a>
+        </li>
+        <li
+          (click)="navegarPara('/dashboard/pacientes', overlay)"
+          class="flex gap-1 flex-row items-center"
+          routerLink="/dashboard/pacientes"
+          routerLinkActive="active"
         >
           <a class="w-full">
             <app-icon-person></app-icon-person>

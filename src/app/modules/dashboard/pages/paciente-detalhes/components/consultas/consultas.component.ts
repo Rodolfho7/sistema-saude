@@ -69,7 +69,6 @@ export class ConsultasComponent implements OnInit {
 
   addConsulta() {
     const dadosConsulta = this.formNovaConsulta.value;
-    console.log(dadosConsulta);
     this.consultas.push(dadosConsulta);
     this.formNovaConsulta.reset();
   }

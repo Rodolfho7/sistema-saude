@@ -1,32 +1,108 @@
 <h2 class="text-2xl font-bold">Informações do paciente</h2>
 <div class="p-4 space-y-4">
-  <form class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <form
+    [formGroup]="form"
+    class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+  >
     <label class="flex flex-col">
       <span>Nome</span>
-      <input type="text" placeholder="Nome" class="input w-full" />
+      <input
+        type="text"
+        placeholder="Nome"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('nome')?.invalid && form.get('nome')?.touched
+        }"
+        formControlName="nome"
+      />
     </label>
     <label class="flex flex-col">
       <span>Profissão</span>
-      <input type="text" placeholder="Profissão" class="input w-full" />
+      <input
+        type="text"
+        placeholder="Profissão"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('profissao')?.invalid && form.get('profissao')?.touched
+        }"
+        formControlName="profissao"
+      />
     </label>
     <label class="flex flex-col">
       <span>País</span>
-      <input type="text" placeholder="País" class="input w-full" />
+      <input
+        type="text"
+        placeholder="País"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('pais')?.invalid && form.get('pais')?.touched
+        }"
+        formControlName="pais"
+      />
     </label>
     <label class="flex flex-col">
       <span>Plano de Saúde</span>
-      <input type="text" placeholder="Plano de Saúde" class="input w-full" />
+      <input
+        type="text"
+        placeholder="Plano de Saúde"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('planoSaude')?.invalid && form.get('planoSaude')?.touched
+        }"
+        formControlName="planoSaude"
+      />
     </label>
     <label class="flex flex-col">
       <span>Peso</span>
-      <input type="text" placeholder="Peso" class="input w-full" />
+      <input
+        type="text"
+        placeholder="Peso"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('peso')?.invalid && form.get('peso')?.touched
+        }"
+        formControlName="peso"
+      />
     </label>
     <label class="flex flex-col">
       <span>Altura</span>
-      <input type="text" placeholder="Altura" class="input w-full" />
+      <input
+        type="text"
+        placeholder="Altura"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('altura')?.invalid && form.get('altura')?.touched
+        }"
+        formControlName="altura"
+      />
+    </label>
+    <label class="flex flex-col">
+      <span>Endereço</span>
+      <input
+        type="text"
+        placeholder="Endereço"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('endereco')?.invalid && form.get('endereco')?.touched
+        }"
+        formControlName="endereco"
+      />
     </label>
   </form>
   <div class="text-end">
-    <button class="btn btn-neutral">Atualizar dados</button>
+    <button
+      class="btn btn-neutral"
+      [disabled]="form.invalid"
+      (click)="atualizarDadosPaciente()"
+    >
+      Atualizar dados
+    </button>
   </div>
 </div>

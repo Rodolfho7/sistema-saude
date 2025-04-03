@@ -20,6 +20,9 @@ import { HistoricoComponent } from './components/historico/historico.component';
   ],
 })
 export class PacienteDetalhesComponent implements OnInit {
+  pacienteId: string | null = null;
+  nomePaciente: string | undefined = '';
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private pacienteService: PacienteService,
@@ -27,10 +30,13 @@ export class PacienteDetalhesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const pacientId = this.activatedRoute.snapshot.paramMap.get('id');
-    if (pacientId) {
-      const paciente = this.pacienteService.getPacienteById(+pacientId);
-      console.log(paciente);
+    this.pacienteId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.pacienteId !== null) {
+      const id = +this.pacienteId;
+      const paciente = this.pacienteService.pacientes.find((p) => p.id == id);
+      if (paciente) {
+        this.nomePaciente = paciente.nome;
+      }
     }
   }
 

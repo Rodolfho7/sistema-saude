@@ -22,8 +22,11 @@ import { HomeComponent } from './components/icones/home/home.component';
 export class DashboardComponent {
   constructor(private router: Router) {}
 
-  navigateTo(url: string) {
+  navegarPara(url: string, overlay: HTMLLabelElement) {
     this.router.navigate([url]);
+    if (window.innerWidth <= 1024) {
+      overlay.click();
+    }
   }
 
   sair() {

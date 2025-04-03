@@ -24,29 +24,7 @@ import { PersonComponent } from '../../components/icones/person/person.component
   styleUrl: './pacientes.component.css',
 })
 export class PacientesComponent implements OnInit {
-  pacientes = [
-    {
-      id: 0,
-      nome: 'Hart Hagerty',
-      pais: 'Brasil',
-      profissao: 'Eletricista',
-      planoSaude: 'UNIMED',
-    },
-    {
-      id: 1,
-      nome: 'Girosvaldo da Silva',
-      pais: 'Brasil',
-      profissao: 'Pedreiro',
-      planoSaude: '--',
-    },
-    {
-      id: 2,
-      nome: 'Ronaldinho Gaúcho',
-      pais: 'Brasil',
-      profissao: 'Oni-presente',
-      planoSaude: '--',
-    },
-  ];
+  pacientes: any[] = [];
 
   formNovopaciente!: FormGroup;
 
@@ -57,6 +35,8 @@ export class PacientesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.pacientes = this.pacienteService.pacientes;
+
     this.formNovopaciente = this.fb.group({
       nome: [null, Validators.required],
       pais: [null, Validators.required],
@@ -67,7 +47,7 @@ export class PacientesComponent implements OnInit {
 
   cadastrar() {
     const paciente = this.formNovopaciente.value;
-    this.pacientes.push({ ...paciente, id: this.pacientes.length });
+    this.pacienteService.addPaciente(paciente);
   }
 
   irParaDetalhes(element: any) {
