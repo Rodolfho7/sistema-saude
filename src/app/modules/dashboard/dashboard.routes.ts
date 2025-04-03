@@ -4,6 +4,7 @@ import { PatientsComponent } from './pages/patients/patients.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './dashboard.component';
 import { PatientsDetailsComponent } from './pages/patients-details/patients-details.component';
+import { ProfessionalsComponent } from './pages/professionals/professionals.component';
 
 export const dashboardRoutes: Routes = [
   {
@@ -18,6 +19,11 @@ export const dashboardRoutes: Routes = [
       {
         path: 'administrators',
         component: AdministratorsComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'professionals',
+        component: ProfessionalsComponent,
         pathMatch: 'full',
       },
       {

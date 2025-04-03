@@ -2,10 +2,19 @@ import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './components/icons/menu/menu.component';
 import { PersonComponent } from './components/icons/person/person.component';
+import { LeaveComponent } from './components/icons/leave/leave.component';
+import { HomeComponent } from './components/icons/home/home.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterOutlet, RouterModule, MenuComponent, PersonComponent],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    MenuComponent,
+    PersonComponent,
+    LeaveComponent,
+    HomeComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   standalone: true,

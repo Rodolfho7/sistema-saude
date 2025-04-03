@@ -19,5 +19,9 @@ export class HomeComponent {
       label: 'Pacientes',
       url: '/dashboard/patients',
     },
+    {
+      label: 'Profissionais',
+      url: '/dashboard/professionals',
+    },
   ];
 }

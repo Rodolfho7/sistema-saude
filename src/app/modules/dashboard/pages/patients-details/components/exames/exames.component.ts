@@ -1,65 +1,55 @@
-import { Component } from '@angular/core';
-
-const ELEMENT_DATA: any[] = [
-  {
-    id: 1,
-    titulo: 'otorrino',
-    medico: 'Dr. Romulo',
-    data: '02/01/2025',
-    status: 'agendado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'consultado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'atrasado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'agendado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'agendado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'agendado',
-  },
-  {
-    id: 1,
-    titulo: 'dermatologista',
-    medico: 'Dra. Rafaela',
-    data: '20/01/2025',
-    status: 'agendado',
-  },
-];
+import { DatePipe, NgClass, NgFor } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { PlusComponent } from '../../../../components/icons/plus/plus.component';
 
 @Component({
   selector: 'app-exames',
-  imports: [],
+  imports: [NgClass, DatePipe, NgFor, ReactiveFormsModule, PlusComponent],
   templateUrl: './exames.component.html',
   styleUrl: './exames.component.css',
 })
-export class ExamesComponent {
-  displayedColumns: string[] = ['titulo', 'medico', 'data', 'status'];
-  displayedColumnsWithExpand = [...this.displayedColumns, 'detalhes'];
-  dataSource = ELEMENT_DATA;
+export class ExamesComponent implements OnInit {
+  formNovoExame!: FormGroup;
+  exames = [
+    {
+      id: 0,
+      laboratorio: 'clinica do sangue',
+      tipoExame: 'Sangue',
+      data: '12/11/25',
+      status: 'Marcado',
+    },
+    {
+      id: 1,
+      laboratorio: 'clinica do sangue',
+      tipoExame: 'Urina',
+      data: '10/10/25',
+      status: 'Feito',
+    },
+    {
+      id: 2,
+      laboratorio: 'clinica do sangue',
+      tipoExame: 'Fezes',
+      data: '10/10/25',
+      status: 'Cancelado',
+    },
+  ];
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.formNovoExame = this.fb.group({
+      laboratorio: [null, Validators.required],
+      tipoExame: [null, Validators.required],
+      data: [null, Validators.required],
+      status: ['A consultar'],
+    });
+  }
+
+  addExame() {}
 }

@@ -1,1 +1,120 @@
-<h1>tela de exames</h1>
+<div class="flex justify-between items-center pb-2">
+  <h2 class="text-2xl font-bold">Dados dos Exames</h2>
+
+  <div>
+    <button class="btn btn-ghost" (click)="modal_cadastrar_cliente.showModal()">
+      Marcar exame
+      <app-icon-plus></app-icon-plus>
+    </button>
+    <dialog id="modal_cadastrar_cliente" #modal_cadastrar_cliente class="modal">
+      <div class="modal-box">
+        <form [formGroup]="formNovoExame" class="flex gap-4 flex-col">
+          <label class="fieldset-label justify-end"
+            ><span>Laboratório</span>
+
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoExame.get('laboratorio')?.invalid &&
+                  formNovoExame.get('laboratorio')?.touched
+              }"
+              placeholder="Nome do laboratório"
+              formControlName="laboratorio"
+            />
+          </label>
+
+          <label class="fieldset-label justify-end"
+            ><span>Tipo de exame</span>
+
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoExame.get('tipoExame')?.invalid &&
+                  formNovoExame.get('tipoExame')?.touched
+              }"
+              placeholder="Nome do laboratório"
+              formControlName="tipoExame"
+            />
+          </label>
+
+          <label class="fieldset-label justify-end">
+            Data
+            <input
+              type="date"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoExame.get('data')?.invalid &&
+                  formNovoExame.get('data')?.touched
+              }"
+              formControlName="data"
+            />
+          </label>
+        </form>
+        <div class="modal-action">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            (click)="modal_cadastrar_cliente.close()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-neutral"
+            [disabled]="formNovoExame.invalid"
+            (click)="addExame(); modal_cadastrar_cliente.close()"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</div>
+
+<div
+  class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+>
+  <table class="table">
+    <!-- head -->
+    <thead class="bg-gray-100">
+      <tr>
+        <th></th>
+        <th>Local</th>
+        <th>Tipo de exame</th>
+        <th>Data</th>
+        <th>Status</th>
+        <!-- <th class="w-20">detalhes</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let exame of exames">
+        <tr class="hover:bg-gray-50">
+          <th>{{ exame?.id }}</th>
+          <td>
+            <div class="font-bold">{{ exame?.laboratorio }}</div>
+          </td>
+          <td>{{ exame?.tipoExame }}</td>
+          <td>{{ exame?.data | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <div
+              class="badge text-white"
+              [ngClass]="{
+                'badge-success': exame?.status == 'Feito',
+                'badge-info': exame?.status == 'Marcado',
+                'badge-error': exame?.status == 'Cancelado'
+              }"
+            >
+              {{ exame?.status }}
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
