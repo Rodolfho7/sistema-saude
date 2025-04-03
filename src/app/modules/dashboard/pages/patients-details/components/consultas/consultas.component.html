@@ -68,7 +68,7 @@
     <!-- head -->
     <thead class="bg-gray-100">
       <tr>
-        <th></th>
+        <th class="w-14"></th>
         <th>Dr.</th>
         <th>Data</th>
         <th>Status</th>
@@ -78,7 +78,9 @@
     <tbody>
       <ng-container *ngFor="let consulta of consultas">
         <tr class="hover:bg-gray-50">
-          <th>{{ consulta?.id }}</th>
+          <th class="border-r border-r-gray-100 text-center">
+            {{ consulta?.id }}
+          </th>
           <td>
             <div class="font-bold">{{ consulta?.nomeMedico }}</div>
           </td>

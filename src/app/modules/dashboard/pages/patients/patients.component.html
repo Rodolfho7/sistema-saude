@@ -94,7 +94,7 @@
       <!-- head -->
       <thead class="bg-gray-100">
         <tr>
-          <th></th>
+          <th class="w-14"></th>
           <th>Nome</th>
           <th>Profissão</th>
           <th>Plano de saúde</th>
@@ -107,7 +107,9 @@
             class="hover:bg-gray-50 cursor-pointer"
             (click)="goToPatientDetails(patient)"
           >
-            <th>{{ patient.id }}</th>
+            <th class="border-r border-r-gray-100 text-center">
+              {{ patient.id }}
+            </th>
             <td>
               <div class="flex items-center gap-3">
                 <div class="rounded-full bg-gray-700 text-white p-2">

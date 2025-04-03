@@ -5,12 +5,19 @@ import { InfoComponent } from './components/info/info.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
 import { ExamesComponent } from './components/exames/exames.component';
 import { LeftComponent } from '../../components/icons/left/left.component';
+import { HistoricoComponent } from './components/historico/historico.component';
 
 @Component({
   selector: 'app-patients-details',
   templateUrl: './patients-details.component.html',
   styleUrl: './patients-details.component.css',
-  imports: [InfoComponent, ConsultasComponent, ExamesComponent, LeftComponent],
+  imports: [
+    InfoComponent,
+    ConsultasComponent,
+    ExamesComponent,
+    LeftComponent,
+    HistoricoComponent,
+  ],
 })
 export class PatientsDetailsComponent implements OnInit {
   constructor(

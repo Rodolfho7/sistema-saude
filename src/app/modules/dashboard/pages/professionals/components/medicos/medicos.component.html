@@ -1,10 +1,10 @@
 <div class="flex justify-between pb-2">
-  <h2 class="text-2xl font-bold">Profissionais</h2>
+  <h2 class="text-2xl font-bold">Médicos</h2>
   <button
     class="btn btn-ghost"
     (click)="modal_cadastrar_profissional.showModal()"
   >
-    Cadastrar Profissional
+    Cadastrar Médico
     <app-icon-plus></app-icon-plus>
   </button>
   <dialog
@@ -31,17 +31,32 @@
         </label>
 
         <label class="fieldset-label justify-end">
-          Área
+          Especialidade
           <input
             type="text"
             class="input"
             [ngClass]="{
               'border-red-400':
-                formNovoProfissional.get('area')?.invalid &&
-                formNovoProfissional.get('area')?.touched
+                formNovoProfissional.get('especialidade')?.invalid &&
+                formNovoProfissional.get('especialidade')?.touched
             }"
-            placeholder="País"
-            formControlName="area"
+            placeholder="especialidade"
+            formControlName="especialidade"
+          />
+        </label>
+
+        <label class="fieldset-label justify-end">
+          CRM
+          <input
+            type="text"
+            class="input"
+            [ngClass]="{
+              'border-red-400':
+                formNovoProfissional.get('crm')?.invalid &&
+                formNovoProfissional.get('crm')?.touched
+            }"
+            placeholder="CRM"
+            formControlName="crm"
           />
         </label>
       </form>
@@ -71,15 +86,18 @@
   <table class="table">
     <thead class="bg-gray-100">
       <tr>
-        <th></th>
+        <th class="w-14"></th>
         <th>Nome</th>
-        <th>Área</th>
+        <th>Especialidade</th>
+        <th>CRM</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let professional of professionals">
         <tr class="hover:bg-gray-50">
-          <th>{{ professional?.id }}</th>
+          <th class="border-r border-r-gray-100 text-center">
+            {{ professional?.id }}
+          </th>
           <td>
             <div class="flex items-center gap-3">
               <div class="rounded-full bg-gray-700 text-white p-2">
@@ -88,7 +106,8 @@
               <div>{{ professional?.nome }}</div>
             </div>
           </td>
-          <td>{{ professional?.area }}</td>
+          <td>{{ professional?.especialidade }}</td>
+          <td>{{ professional?.crm }}</td>
         </tr>
       </ng-container>
     </tbody>

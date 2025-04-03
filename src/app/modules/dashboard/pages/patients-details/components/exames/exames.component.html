@@ -84,7 +84,7 @@
     <!-- head -->
     <thead class="bg-gray-100">
       <tr>
-        <th></th>
+        <th class="w-14"></th>
         <th>Local</th>
         <th>Tipo de exame</th>
         <th>Data</th>
@@ -95,7 +95,9 @@
     <tbody>
       <ng-container *ngFor="let exame of exames">
         <tr class="hover:bg-gray-50">
-          <th>{{ exame?.id }}</th>
+          <th class="border-r border-r-gray-100 text-center">
+            {{ exame?.id }}
+          </th>
           <td>
             <div class="font-bold">{{ exame?.laboratorio }}</div>
           </td>

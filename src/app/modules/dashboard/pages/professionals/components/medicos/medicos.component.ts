@@ -28,12 +28,14 @@ export class MedicosComponent implements OnInit {
     {
       id: 0,
       nome: 'Dr. Rafael Pereira',
-      area: 'Ortopedista',
+      especialidade: 'Ortopedista',
+      crm: 123123123,
     },
     {
       id: 1,
       nome: 'Dra. Larissa Colosso',
-      area: 'Geriatra',
+      especialidade: 'Geriatra',
+      crm: 456456456,
     },
   ];
 
@@ -42,9 +44,13 @@ export class MedicosComponent implements OnInit {
   ngOnInit(): void {
     this.formNovoProfissional = this.fb.group({
       nome: [null, Validators.required],
-      area: [null, Validators.required],
+      especialidade: [null, Validators.required],
+      crm: [null, Validators.required],
     });
   }
 
-  cadastrar() {}
+  cadastrar() {
+    const novoMedico = this.formNovoProfissional.value;
+    this.professionals.push({ ...novoMedico, id: this.professionals.length });
+  }
 }
