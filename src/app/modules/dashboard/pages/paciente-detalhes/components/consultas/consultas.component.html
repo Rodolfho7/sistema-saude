@@ -12,7 +12,7 @@
           <label class="fieldset-label justify-end"
             ><span>Nome do Médico</span>
 
-            <input
+            <!-- <input
               type="text"
               class="input"
               [ngClass]="{
@@ -22,7 +22,14 @@
               }"
               placeholder="Nome do médico"
               formControlName="nomeMedico"
-            />
+            /> -->
+
+            <select class="select" formControlName="nomeMedico">
+              <option disabled selected>Selecione um médico</option>
+              <option *ngFor="let medico of medicos" [value]="medico.nome">
+                {{ medico.nome }}
+              </option>
+            </select>
           </label>
 
           <label class="fieldset-label justify-end">
@@ -43,7 +50,7 @@
           <button
             type="button"
             class="btn btn-ghost"
-            (click)="modal_cadastrar_cliente.close()"
+            (click)="modal_cadastrar_cliente.close(); formNovaConsulta.reset()"
           >
             Cancelar
           </button>
@@ -53,7 +60,7 @@
             [disabled]="formNovaConsulta.invalid"
             (click)="addConsulta(); modal_cadastrar_cliente.close()"
           >
-            Cadastrar
+            Agendar
           </button>
         </div>
       </div>
@@ -87,7 +94,7 @@
           <td>{{ consulta?.data | date : "dd/MM/yyyy" }}</td>
           <td>
             <div
-              class="badge text-white"
+              class="badge text-white w-full"
               [ngClass]="{
                 'badge-success': consulta?.status == 'Consultado',
                 'badge-warning': consulta?.status == 'A consultar',
@@ -102,3 +109,8 @@
     </tbody>
   </table>
 </div>
+
+<app-alerta-sucesso
+  *ngIf="mostrarAlertaSucesso"
+  [mensagemAlerta]="mensagemAlerta"
+></app-alerta-sucesso>

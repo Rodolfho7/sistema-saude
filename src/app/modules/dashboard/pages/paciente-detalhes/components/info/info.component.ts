@@ -6,11 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { PacienteService } from '../../../../services/paciente.service';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
+import { AlertaSucessoComponent } from '../../../../components/alerta-sucesso/alerta-sucesso.component';
 
 @Component({
   selector: 'app-info',
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, NgIf, AlertaSucessoComponent],
   templateUrl: './info.component.html',
   styleUrl: './info.component.css',
 })
@@ -18,6 +19,9 @@ export class InfoComponent implements OnInit {
   @Input() pacienteId: string | null = null;
 
   form!: FormGroup;
+
+  mostrarAlertaSucesso = false;
+  mensagemAlerta = '';
 
   constructor(
     private fb: FormBuilder,
@@ -53,5 +57,15 @@ export class InfoComponent implements OnInit {
   atualizarDadosPaciente() {
     const dadosAtualizados = this.form.value;
     this.pacienteService.atualizarDadosPaciente(dadosAtualizados);
+    this.alertaSucesso('Os dados do paciente foram atualizados com sucesso!');
+  }
+
+  alertaSucesso(mensagem: string) {
+    this.mensagemAlerta = mensagem;
+    this.mostrarAlertaSucesso = true;
+    setTimeout(() => {
+      this.mostrarAlertaSucesso = false;
+      this.mensagemAlerta = '';
+    }, 2000);
   }
 }

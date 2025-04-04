@@ -45,6 +45,10 @@ export class PacienteService {
     this.pacientes.push({ ...paciente, id: this.pacientes.length });
   }
 
+  removerPaciente(paciente: Paciente) {
+    this.pacientes = this.pacientes.filter((p) => p.id != paciente.id);
+  }
+
   getPacienteById(id: number) {
     return this.pacientes.find((p) => p.id == id);
   }

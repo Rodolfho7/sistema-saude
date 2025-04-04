@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonComponent } from '../../../../components/icones/person/person.component';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -8,21 +8,27 @@ import {
   Validators,
 } from '@angular/forms';
 import { PlusComponent } from '../../../../components/icones/plus/plus.component';
+import { AlertaSucessoComponent } from '../../../../components/alerta-sucesso/alerta-sucesso.component';
 
 @Component({
   selector: 'app-enfermeiros',
   imports: [
     PersonComponent,
     NgFor,
+    NgIf,
     NgClass,
     ReactiveFormsModule,
     PlusComponent,
+    AlertaSucessoComponent,
   ],
   templateUrl: './enfermeiros.component.html',
   styleUrl: './enfermeiros.component.scss',
 })
 export class EnfermeirosComponent implements OnInit {
   formNovoProfissional!: FormGroup;
+
+  mostrarAlertaSucesso = false;
+  mensagemAlerta = '';
 
   professionals = [
     {
@@ -49,5 +55,16 @@ export class EnfermeirosComponent implements OnInit {
       ...novoEnfermeiro,
       id: this.professionals.length,
     });
+
+    this.alertaSucesso('Enfermeiro cadastrado com sucesso');
+  }
+
+  alertaSucesso(mensagem: string) {
+    this.mensagemAlerta = mensagem;
+    this.mostrarAlertaSucesso = true;
+    setTimeout(() => {
+      this.mostrarAlertaSucesso = false;
+      this.mensagemAlerta = '';
+    }, 2000);
   }
 }

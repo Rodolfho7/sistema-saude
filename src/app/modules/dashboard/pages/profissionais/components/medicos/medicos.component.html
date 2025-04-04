@@ -64,7 +64,9 @@
         <button
           type="button"
           class="btn btn-ghost"
-          (click)="modal_cadastrar_profissional.close()"
+          (click)="
+            modal_cadastrar_profissional.close(); formNovoProfissional.reset()
+          "
         >
           Cancelar
         </button>
@@ -113,3 +115,8 @@
     </tbody>
   </table>
 </div>
+
+<app-alerta-sucesso
+  *ngIf="mostrarAlertaSucesso"
+  [mensagemAlerta]="mensagemAlerta"
+></app-alerta-sucesso>

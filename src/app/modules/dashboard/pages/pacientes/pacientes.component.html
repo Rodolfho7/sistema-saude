@@ -130,10 +130,13 @@
                 </div>
                 <ul
                   tabindex="0"
-                  class="dropdown-content menu bg-base-100 rounded-box w-min p-2 shadow-sm z-50"
+                  class="dropdown-content menu bg-base-100 rounded-box p-2 shadow-sm z-50"
                 >
-                  <li (click)="removerPaciente()">
-                    <a class="text-red-400">
+                  <li>
+                    <a
+                      class="text-red-400"
+                      (click)="modal_remover_paciente.showModal()"
+                    >
                       <app-icon-remove></app-icon-remove>
                       Remover
                     </a>
@@ -146,6 +149,37 @@
                   </li>
                 </ul>
               </div>
+              <dialog
+                id="modal_remover_paciente"
+                #modal_remover_paciente
+                class="modal"
+              >
+                <div class="modal-box">
+                  <h3 class="text-lg font-bold">Importante</h3>
+                  <p class="py-4">
+                    Deseja realmente remover o paciente:
+                    <span class="font-bold text-lg">{{ paciente.nome }}</span>
+                  </p>
+                  <div class="modal-action">
+                    <button
+                      type="button"
+                      class="btn btn-ghost"
+                      (click)="modal_remover_paciente.close()"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      class="btn btn-error"
+                      (click)="
+                        removerPaciente(paciente);
+                        modal_remover_paciente.close()
+                      "
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </dialog>
             </td>
           </tr>
         </ng-container>
@@ -153,3 +187,8 @@
     </table>
   </div>
 </div>
+
+<app-alerta-sucesso
+  *ngIf="mostrarAlertaSucesso"
+  [mensagemAlerta]="mensagemAlerta"
+></app-alerta-sucesso>
