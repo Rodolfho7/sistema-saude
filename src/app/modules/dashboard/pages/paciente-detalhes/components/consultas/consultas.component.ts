@@ -10,6 +10,9 @@ import { PlusComponent } from '../../../../components/icones/plus/plus.component
 import { AlertaSucessoComponent } from '../../../../components/alerta-sucesso/alerta-sucesso.component';
 import { ConsultasService } from '../../../../services/consultas.service';
 import { MedicosService } from '../../../../services/medicos.service';
+import { OptionsComponent } from '../../../../components/icones/options/options.component';
+import { CancelComponent } from '../../../../components/icones/cancel/cancel.component';
+import { CheckComponent } from '../../../../components/icones/check/check.component';
 
 @Component({
   selector: 'app-consultas',
@@ -22,6 +25,9 @@ import { MedicosService } from '../../../../services/medicos.service';
     NgIf,
     DatePipe,
     AlertaSucessoComponent,
+    OptionsComponent,
+    CancelComponent,
+    CheckComponent,
   ],
   templateUrl: './consultas.component.html',
   styleUrl: './consultas.component.css',
@@ -58,7 +64,6 @@ export class ConsultasComponent implements OnInit {
       return;
     }
     const pacientId = +this.pacienteId;
-    console.log(pacientId);
     this.consultas = this.consultasService.consultas.filter(
       (c) => c.pacientId == pacientId
     );
@@ -91,5 +96,21 @@ export class ConsultasComponent implements OnInit {
       this.mostrarAlertaSucesso = false;
       this.mensagemAlerta = '';
     }, 2000);
+  }
+
+  cancelarConsulta(consulta: any) {
+    this.consultasService.atualizarDadosConsulta({
+      ...consulta,
+      status: 'Cancelado',
+    });
+    this.getConsultas();
+  }
+
+  marcarFeito(consulta: any) {
+    this.consultasService.atualizarDadosConsulta({
+      ...consulta,
+      status: 'Consultado',
+    });
+    this.getConsultas();
   }
 }

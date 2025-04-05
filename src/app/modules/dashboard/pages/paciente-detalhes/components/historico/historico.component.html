@@ -1,3 +1,82 @@
+<div class="flex justify-end">
+  <button class="btn btn-ghost" (click)="modal_cadastrar_historico.showModal()">
+    Inserir Histórico
+    <app-icon-plus></app-icon-plus>
+  </button>
+  <dialog
+    id="modal_cadastrar_historico"
+    #modal_cadastrar_historico
+    class="modal"
+  >
+    <div class="modal-box">
+      <form [formGroup]="formNovoHistorico" class="flex gap-4 flex-col">
+        <label class="fieldset-label justify-end"
+          ><span>Resumo</span>
+
+          <input
+            type="text"
+            class="input"
+            [ngClass]="{
+              'border-red-400':
+                formNovoHistorico.get('resumo')?.invalid &&
+                formNovoHistorico.get('resumo')?.touched
+            }"
+            placeholder="resumo"
+            formControlName="resumo"
+          />
+        </label>
+
+        <label class="fieldset-label justify-end"
+          ><span>Descrição</span>
+
+          <input
+            type="text"
+            class="input"
+            [ngClass]="{
+              'border-red-400':
+                formNovoHistorico.get('descricao')?.invalid &&
+                formNovoHistorico.get('descricao')?.touched
+            }"
+            placeholder="descrição"
+            formControlName="descricao"
+          />
+        </label>
+
+        <label class="fieldset-label justify-end">
+          Data
+          <input
+            type="date"
+            class="input"
+            [ngClass]="{
+              'border-red-400':
+                formNovoHistorico.get('data')?.invalid &&
+                formNovoHistorico.get('data')?.touched
+            }"
+            formControlName="data"
+          />
+        </label>
+      </form>
+      <div class="modal-action">
+        <button
+          type="button"
+          class="btn btn-ghost"
+          (click)="modal_cadastrar_historico.close(); formNovoHistorico.reset()"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-neutral"
+          [disabled]="formNovoHistorico.invalid"
+          (click)="addHistorico(); modal_cadastrar_historico.close()"
+        >
+          Cadastrar
+        </button>
+      </div>
+    </div>
+  </dialog>
+</div>
+
 <ul
   class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
 >

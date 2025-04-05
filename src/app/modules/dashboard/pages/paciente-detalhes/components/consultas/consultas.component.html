@@ -68,17 +68,16 @@
   </div>
 </div>
 
-<div
-  class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
->
+<div class="rounded-box border border-base-content/5 bg-base-100">
   <table class="table">
     <!-- head -->
     <thead class="bg-gray-100">
       <tr>
         <th class="w-14"></th>
-        <th>Dr.</th>
+        <th>Médico</th>
         <th>Data</th>
         <th>Status</th>
+        <th></th>
         <!-- <th class="w-20">detalhes</th> -->
       </tr>
     </thead>
@@ -102,6 +101,34 @@
               }"
             >
               {{ consulta?.status }}
+            </div>
+          </td>
+          <td>
+            <div class="dropdown dropdown-end">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-circle m-1 bg-white"
+              >
+                <app-icon-options></app-icon-options>
+              </div>
+              <ul
+                tabindex="0"
+                class="dropdown-content menu bg-base-100 rounded-box p-2 shadow-sm z-50"
+              >
+                <li>
+                  <a class="text-red-400" (click)="cancelarConsulta(consulta)">
+                    <app-icon-cancel></app-icon-cancel>
+                    Cancelar
+                  </a>
+                </li>
+                <li (click)="marcarFeito(consulta)">
+                  <a class="text-green-400">
+                    <app-icon-check></app-icon-check>
+                    <span class="text-nowrap">Consultado</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </td>
         </tr>

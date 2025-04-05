@@ -36,7 +36,7 @@
                   formNovoExame.get('tipoExame')?.invalid &&
                   formNovoExame.get('tipoExame')?.touched
               }"
-              placeholder="Nome do laboratório"
+              placeholder="tipo de exame"
               formControlName="tipoExame"
             />
           </label>
@@ -59,7 +59,7 @@
           <button
             type="button"
             class="btn btn-ghost"
-            (click)="modal_cadastrar_cliente.close()"
+            (click)="modal_cadastrar_cliente.close(); formNovoExame.reset()"
           >
             Cancelar
           </button>
@@ -77,9 +77,7 @@
   </div>
 </div>
 
-<div
-  class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
->
+<div class="rounded-box border border-base-content/5 bg-base-100">
   <table class="table">
     <!-- head -->
     <thead class="bg-gray-100">
@@ -89,6 +87,7 @@
         <th>Tipo de exame</th>
         <th>Data</th>
         <th>Status</th>
+        <td></td>
         <!-- <th class="w-20">detalhes</th> -->
       </tr>
     </thead>
@@ -115,8 +114,41 @@
               {{ exame?.status }}
             </div>
           </td>
+          <td>
+            <div class="dropdown dropdown-end">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-circle m-1 bg-white"
+              >
+                <app-icon-options></app-icon-options>
+              </div>
+              <ul
+                tabindex="0"
+                class="dropdown-content menu bg-base-100 rounded-box p-2 shadow-sm z-50"
+              >
+                <li>
+                  <a class="text-red-400" (click)="cancelarExame(exame)">
+                    <app-icon-cancel></app-icon-cancel>
+                    Cancelar
+                  </a>
+                </li>
+                <li (click)="marcarFeito(exame)">
+                  <a class="text-green-400">
+                    <app-icon-check></app-icon-check>
+                    <span class="text-nowrap">Feito</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
         </tr>
       </ng-container>
     </tbody>
   </table>
 </div>
+
+<app-alerta-sucesso
+  *ngIf="mostrarAlertaSucesso"
+  [mensagemAlerta]="mensagemAlerta"
+></app-alerta-sucesso>
