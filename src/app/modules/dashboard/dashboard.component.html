@@ -39,53 +39,55 @@
       class="drawer-overlay"
       #overlay
     ></label>
-    <div class="min-h-full w-60 bg-base-200 p-4">
-      <p class="flex gap-1 items-center justify-center h-12">
-        <img src="assets/vida-plus.svg" class="size-6" />
-        <span class="text-xl"> VidaPlus </span>
-      </p>
-      <ul class="menu text-base-content h-full w-full gap-3 p-0">
+    <div class="min-h-full w-60 bg-base-200">
+      <div class="p-2 border-b border-b-gray-200">
+        <p class="flex gap-2 items-center justify-center h-12">
+          <img src="assets/vida-plus.svg" class="size-6" />
+          <span class="text-xl"> VidaPlus </span>
+        </p>
+      </div>
+      <ul class="menu text-base-content h-full w-full p-0">
         <li
           (click)="navegarPara('/dashboard', overlay)"
-          class="flex gap-1 flex-row items-center"
+          class="flex gap-1 flex-row items-center rounded-full"
           routerLink="/dashboard"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="w-full">
+          <a class="w-full rounded-full">
             <app-icon-home></app-icon-home>
             Principal
           </a>
         </li>
         <li
           (click)="navegarPara('/dashboard/administradores', overlay)"
-          class="flex gap-1 flex-row items-center"
+          class="flex gap-1 flex-row items-center rounded-full"
           routerLink="/dashboard/administradores"
           routerLinkActive="active"
         >
-          <a class="w-full">
-            <app-icon-person></app-icon-person>
+          <a class="w-full rounded-full">
+            <app-icon-person-group></app-icon-person-group>
             Administradores
           </a>
         </li>
         <li
           (click)="navegarPara('/dashboard/profissionais', overlay)"
-          class="flex gap-1 flex-row items-center"
+          class="flex gap-1 flex-row items-center rounded-full"
           routerLink="/dashboard/profissionais"
           routerLinkActive="active"
         >
-          <a class="w-full">
+          <a class="w-full rounded-full">
             <app-icon-person></app-icon-person>
             Profissionais
           </a>
         </li>
         <li
           (click)="navegarPara('/dashboard/pacientes', overlay)"
-          class="flex gap-1 flex-row items-center"
+          class="flex gap-1 flex-row items-center rounded-full"
           routerLink="/dashboard/pacientes"
           routerLinkActive="active"
         >
-          <a class="w-full">
+          <a class="w-full rounded-full">
             <app-icon-person></app-icon-person>
             Pacientes
           </a>

@@ -32,7 +32,8 @@ export class InfoComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.pacienteId],
       nome: [null, Validators.required],
-      pais: [null, Validators.required],
+      email: [null, Validators.required],
+      telefone: [null, Validators.required],
       peso: [null, Validators.required],
       altura: [null, Validators.required],
       planoSaude: [null, Validators.required],

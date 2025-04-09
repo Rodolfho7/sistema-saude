@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 type Paciente = {
   id?: number;
   nome: string;
-  pais: string;
+  email?: string;
+  telefone: string;
   profissao: string;
   planoSaude: string;
   peso?: number;
@@ -19,21 +20,24 @@ export class PacienteService {
     {
       id: 0,
       nome: 'Hart Hagerty',
-      pais: 'Brasil',
+      email: 'HartHagerty@gmail.com',
+      telefone: '1111111111',
       profissao: 'Eletricista',
       planoSaude: 'UNIMED',
     },
     {
       id: 1,
       nome: 'Girosvaldo da Silva',
-      pais: 'Brasil',
+      email: 'Girosvaldo@gmail.com',
+      telefone: '2222222222',
       profissao: 'Pedreiro',
       planoSaude: '--',
     },
     {
       id: 2,
       nome: 'Ronaldinho Gaúcho',
-      pais: 'Brasil',
+      email: 'Ronaldinho@gmail.com',
+      telefone: '3333333333',
       profissao: 'Oni-presente',
       planoSaude: '--',
     },

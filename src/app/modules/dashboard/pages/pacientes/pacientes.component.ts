@@ -51,7 +51,8 @@ export class PacientesComponent implements OnInit {
 
     this.formNovopaciente = this.fb.group({
       nome: [null, Validators.required],
-      pais: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      telefone: [null, Validators.required],
       profissao: [null, Validators.required],
       planoSaude: [null, Validators.required],
     });

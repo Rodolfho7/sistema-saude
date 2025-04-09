@@ -1,3 +1,250 @@
-<div class="container mx-auto mt-4 p-2">
-  <h2 class="text-2xl font-bold">Administradores</h2>
+<div class="container mx-auto mt-4 p-8">
+  <div class="flex justify-between pb-2">
+    <h2 class="text-2xl font-bold">Administradores</h2>
+    <button
+      class="btn btn-ghost"
+      (click)="modal_cadastrar_administrador.showModal()"
+    >
+      Cadastrar Administrador
+      <app-icon-plus></app-icon-plus>
+    </button>
+    <dialog
+      id="modal_cadastrar_administrador"
+      #modal_cadastrar_administrador
+      class="modal"
+    >
+      <div class="modal-box">
+        <form [formGroup]="formNovoAdministrador" class="flex gap-4 flex-col">
+          <label class="fieldset-label justify-end"
+            ><span>Nome</span>
+
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('nome')?.invalid &&
+                  formNovoAdministrador.get('nome')?.touched
+              }"
+              placeholder="Nome"
+              formControlName="nome"
+            />
+          </label>
+
+          <label class="fieldset-label justify-end">
+            Email
+            <input
+              type="email"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('email')?.invalid &&
+                  formNovoAdministrador.get('email')?.touched
+              }"
+              placeholder="Email"
+              formControlName="email"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Telefone
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('telefone')?.invalid &&
+                  formNovoAdministrador.get('telefone')?.touched
+              }"
+              placeholder="Telefone"
+              formControlName="telefone"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Cargo
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('cargo')?.invalid &&
+                  formNovoAdministrador.get('cargo')?.touched
+              }"
+              placeholder="Cargo"
+              formControlName="cargo"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Departamento
+            <input
+              type="text"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('departamento')?.invalid &&
+                  formNovoAdministrador.get('departamento')?.touched
+              }"
+              placeholder="Departamento"
+              formControlName="departamento"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Data de admissão
+            <input
+              type="date"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovoAdministrador.get('dataAdmissao')?.invalid &&
+                  formNovoAdministrador.get('dataAdmissao')?.touched
+              }"
+              placeholder="Data de admissão"
+              formControlName="dataAdmissao"
+            />
+          </label>
+        </form>
+        <div class="modal-action">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            (click)="
+              modal_cadastrar_administrador.close();
+              formNovoAdministrador.reset()
+            "
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-neutral"
+            [disabled]="formNovoAdministrador.invalid"
+            (click)="
+              cadastrarAdministrador(); modal_cadastrar_administrador.close()
+            "
+          >
+            Cadastrar
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+  <div class="rounded-box border border-base-content/5 bg-base-100 mb-8">
+    <table class="table">
+      <!-- head -->
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="w-14"></th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Cargo</th>
+          <th>Departamento</th>
+          <th>Data de admissão</th>
+          <th>Ativo</th>
+          <th></th>
+          <!-- <th class="w-20">detalhes</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let admin of administradores">
+          <tr class="hover:bg-gray-50">
+            <th class="border-r border-r-gray-100 text-center">
+              {{ admin.id }}
+            </th>
+            <td>
+              <div class="flex items-center gap-3">
+                <div class="rounded-full bg-gray-700 text-white p-2">
+                  <app-icon-person></app-icon-person>
+                </div>
+                <div>
+                  <div class="font-bold">{{ admin.nome }}</div>
+                </div>
+              </div>
+            </td>
+            <td>{{ admin.email }}</td>
+            <td>{{ admin.telefone }}</td>
+            <td>{{ admin.cargo }}</td>
+            <td>{{ admin.departamento }}</td>
+            <td>{{ admin.dataAdmissao | date : "dd/MM/yyyy" }}</td>
+            <td class="text-center">
+              <app-icon-check
+                *ngIf="admin.ativo"
+                class="text-green-500"
+              ></app-icon-check>
+              <app-icon-cancel
+                *ngIf="!admin.ativo"
+                class="text-red-500"
+              ></app-icon-cancel>
+            </td>
+            <td>
+              <div class="dropdown dropdown-end">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-circle m-1 bg-white"
+                >
+                  <app-icon-options></app-icon-options>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="dropdown-content menu bg-base-100 rounded-box p-2 shadow-sm z-50"
+                >
+                  <li>
+                    <a
+                      class="text-red-400"
+                      (click)="modal_remover_administrador.showModal()"
+                    >
+                      <app-icon-remove></app-icon-remove>
+                      Remover
+                    </a>
+                  </li>
+                  <li (click)="irParaDetalhes(admin)">
+                    <a>
+                      <app-icon-details></app-icon-details>
+                      <span class="text-nowrap"> Ver detalhes </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <dialog
+                id="modal_remover_administrador"
+                #modal_remover_administrador
+                class="modal"
+              >
+                <div class="modal-box">
+                  <h3 class="text-lg font-bold">Importante</h3>
+                  <p class="py-4">
+                    Deseja realmente remover o administrador:
+                    <span class="font-bold text-lg">{{ admin.nome }}</span>
+                  </p>
+                  <div class="modal-action">
+                    <button
+                      type="button"
+                      class="btn btn-ghost"
+                      (click)="modal_remover_administrador.close()"
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      class="btn btn-error"
+                      (click)="
+                        removerAdministrador(admin);
+                        modal_remover_administrador.close()
+                      "
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </dialog>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<app-alerta-sucesso
+  *ngIf="mostrarAlertaSucesso"
+  [mensagemAlerta]="mensagemAlerta"
+></app-alerta-sucesso>

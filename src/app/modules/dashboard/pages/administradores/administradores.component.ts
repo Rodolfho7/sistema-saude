@@ -1,38 +1,84 @@
 import { Component } from '@angular/core';
-import { AddAdminComponent } from './modals/add-admin/add-admin.component';
+import { PlusComponent } from '../../components/icones/plus/plus.component';
+import { PersonComponent } from '../../components/icones/person/person.component';
+import { OptionsComponent } from '../../components/icones/options/options.component';
+import { RemoveComponent } from '../../components/icones/remove/remove.component';
+import { DetailsComponent } from '../../components/icones/details/details.component';
+import { AlertaSucessoComponent } from '../../components/alerta-sucesso/alerta-sucesso.component';
+import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
+import { CheckComponent } from '../../components/icones/check/check.component';
+import { CancelComponent } from '../../components/icones/cancel/cancel.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+type Admin = {
+  id: number;
+  nome: string;
+  email: string;
+  telefone: string;
+  cargo: string;
+  departamento: string;
+  dataAdmissao: Date;
+  ativo: boolean;
+};
 
 @Component({
   selector: 'app-administradores',
-  imports: [],
+  imports: [
+    PlusComponent,
+    PersonComponent,
+    OptionsComponent,
+    RemoveComponent,
+    DetailsComponent,
+    AlertaSucessoComponent,
+    NgIf,
+    NgClass,
+    NgFor,
+    DatePipe,
+    ReactiveFormsModule,
+    CheckComponent,
+    CancelComponent,
+  ],
   templateUrl: './administradores.component.html',
   styleUrl: './administradores.component.css',
   standalone: true,
 })
 export class AdministradoresComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  mostrarAlertaSucesso = false;
+  mensagemAlerta = '';
 
-  constructor() {}
+  formNovoAdministrador!: FormGroup;
 
-  openAddModal() {}
+  administradores: Admin[] = [];
+
+  constructor(private adminService: AdminService, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.administradores = this.adminService.administradores;
+
+    this.formNovoAdministrador = this.fb.group({
+      id: [null],
+      nome: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      telefone: [null, Validators.required],
+      cargo: [null, Validators.required],
+      departamento: [null, Validators.required],
+      dataAdmissao: [null, Validators.required],
+      ativo: [true],
+    });
+  }
+
+  cadastrarAdministrador() {
+    const novoAdmin = this.formNovoAdministrador.value;
+    this.adminService.addAdministrador(novoAdmin);
+  }
+
+  removerAdministrador(administrador: any) {}
+
+  irParaDetalhes(administrador: any) {}
 }

@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-4 p-2">
+<div class="container mx-auto mt-4 p-8">
   <div class="flex justify-between pb-2">
     <h2 class="text-2xl font-bold">Pacientes</h2>
     <button class="btn btn-ghost" (click)="modal_cadastrar_cliente.showModal()">
@@ -23,19 +23,32 @@
               formControlName="nome"
             />
           </label>
-
           <label class="fieldset-label justify-end">
-            País
+            Email
+            <input
+              type="email"
+              class="input"
+              [ngClass]="{
+                'border-red-400':
+                  formNovopaciente.get('email')?.invalid &&
+                  formNovopaciente.get('email')?.touched
+              }"
+              placeholder="Email"
+              formControlName="email"
+            />
+          </label>
+          <label class="fieldset-label justify-end">
+            Telefone
             <input
               type="text"
               class="input"
               [ngClass]="{
                 'border-red-400':
-                  formNovopaciente.get('pais')?.invalid &&
-                  formNovopaciente.get('pais')?.touched
+                  formNovopaciente.get('telefone')?.invalid &&
+                  formNovopaciente.get('telefone')?.touched
               }"
-              placeholder="País"
-              formControlName="pais"
+              placeholder="Telefone"
+              formControlName="telefone"
             />
           </label>
           <label class="fieldset-label justify-end">
@@ -71,7 +84,7 @@
           <button
             type="button"
             class="btn btn-ghost"
-            (click)="modal_cadastrar_cliente.close()"
+            (click)="modal_cadastrar_cliente.close(); formNovopaciente.reset()"
           >
             Cancelar
           </button>
@@ -94,6 +107,8 @@
         <tr>
           <th class="w-14"></th>
           <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
           <th>Profissão</th>
           <th>Plano de saúde</th>
           <th></th>
@@ -113,10 +128,11 @@
                 </div>
                 <div>
                   <div class="font-bold">{{ paciente.nome }}</div>
-                  <div class="text-sm opacity-50">{{ paciente.pais }}</div>
                 </div>
               </div>
             </td>
+            <td>{{ paciente.email }}</td>
+            <td>{{ paciente.telefone }}</td>
             <td>{{ paciente.profissao }}</td>
             <td>{{ paciente.planoSaude }}</td>
             <td>

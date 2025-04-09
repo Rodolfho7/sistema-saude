@@ -31,16 +31,29 @@
       />
     </label>
     <label class="flex flex-col">
-      <span>País</span>
+      <span>Email</span>
       <input
-        type="text"
-        placeholder="País"
+        type="email"
+        placeholder="Email"
         class="input w-full"
         [ngClass]="{
           'border-red-400':
-            form.get('pais')?.invalid && form.get('pais')?.touched
+            form.get('email')?.invalid && form.get('email')?.touched
         }"
-        formControlName="pais"
+        formControlName="email"
+      />
+    </label>
+    <label class="flex flex-col">
+      <span>Telefone</span>
+      <input
+        type="text"
+        placeholder="Telefone"
+        class="input w-full"
+        [ngClass]="{
+          'border-red-400':
+            form.get('telefone')?.invalid && form.get('telefone')?.touched
+        }"
+        formControlName="telefone"
       />
     </label>
     <label class="flex flex-col">
